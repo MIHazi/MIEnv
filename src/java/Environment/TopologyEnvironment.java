@@ -6,6 +6,8 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class TopologyEnvironment extends Environment{
 
+	
+	
 	@Override
 	public void init(String[] args) {
 		throw new NotImplementedException();

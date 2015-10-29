@@ -4,5 +4,6 @@
 	<classpathentry excluding="*.asl" kind="src" path="src/asl"/>
 	<classpathentry kind="src" path="src/java"/>
 	<classpathentry kind="lib" path="C:/Users/danko/Documents/Tanulmányok/MI/AgentGame/Jason-1.4.2/lib/jason.jar"/>
+	<classpathentry kind="lib" path="lib/quick-json-1.0.2.3.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
