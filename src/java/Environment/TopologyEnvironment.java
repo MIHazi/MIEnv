@@ -2,9 +2,10 @@ package Environment;
 
 import jason.asSyntax.Structure;
 import jason.environment.Environment;
+import jason.environment.TimeSteppedEnvironment;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-public class TopologyEnvironment extends Environment{
+public class TopologyEnvironment extends TimeSteppedEnvironment{
 
 	
 	
