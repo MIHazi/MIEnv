@@ -13,11 +13,17 @@ import jason.asSyntax.LiteralImpl;
 import jason.asSyntax.Structure;
 import jason.asSyntax.parser.ParseException;
 import jason.environment.Environment;
+import jason.stdlib.print;
+import jason.stdlib.println;
 
 public class TopologyEnvironment extends Environment{
 	
 	Map config;
 	TopologyModel model;
+	
+	public TopologyEnvironment() {
+		super(1);
+	}
 	
 	@Override
 	public void init(String[] args) {
@@ -28,34 +34,33 @@ public class TopologyEnvironment extends Environment{
 			StringBuilder builder = new StringBuilder();
 			String str;
 			while((str = confInput.readLine()) != null){
-				builder.append(str);
+				builder.append(str + "\n");
 			}
 			confInput.close();
 			JSONParser parser = JsonParserFactory.getInstance().newJsonParser();
+			//TODO: DEBUG System.out.println(builder.toString());
 			config = parser.parseJson(builder.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		//TODO: DEBUG System.out.println("ROOT: \n" + config.toString());
 		model = new TopologyModel(config);
 		addInitialPercepts();
 	}
 	
 	public void addInitialPercepts(){
 		try{
-			ListTerm list = ASSyntax.createList();
+			ListTerm nodeList = ASSyntax.createList();
 			for(Integer i = 0; i < model.nodes.size(); i++){
-				try {
-					list.add(ASSyntax.parseTerm(i.toString()));
-				} catch (ParseException e) {
-					e.printStackTrace();
-				}
+					nodeList.add(ASSyntax.createNumber(i));
 			}
-			addPercept(ASSyntax.createLiteral("roads", list));
-			list.clear();
-			for(int i = 0; i < model.roads.size(); i++){
+			addPercept(ASSyntax.createLiteral("nodes", nodeList));
+			ListTerm roadList = ASSyntax.createList();
+			for(Integer i = 0; i < model.roads.size(); i++){
 				Road road = model.roads.get(i);
-				list.add(ASSyntax.parseTerm("[" + i + "," + road.startNode.id + "," + road.endNode.id + "," + road.speedLimit + "," + road.length + "]"));
+				roadList.add(ASSyntax.parseTerm("[" + i + "," + road.startNode.id + "," + road.endNode.id + "," + road.speedLimit + "," + road.length + "]"));
 			}
+			addPercept(ASSyntax.createLiteral("roads", roadList));
 		}
 		catch(ParseException e){
 			e.printStackTrace();

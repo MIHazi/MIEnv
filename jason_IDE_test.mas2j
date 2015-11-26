@@ -1,7 +1,7 @@
 MAS jason_IDE_test {
 
 	infrastructure: Centralised
-	environment: TopologyEnvironment("Config.json")
+	environment: Environment.TopologyEnvironment("config.json")
 	agents:
 		agent1 sample_agent;
 
