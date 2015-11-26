@@ -1,0 +1,42 @@
+{ "Topology" : 
+	[
+		{ "Nodes" :
+			[
+				{ 
+					"ID" : 0,
+					"PosX" : 120,
+					"PosY" : 60				  
+				},
+				{ 
+					"ID" : 1,
+					"PosX" : 220,
+					"PosY" : 130				  
+				},
+				{ 
+					"ID" : 2,
+					"PosX" : 150,
+					"PosY" : 200				  
+				}
+			]
+		},
+		{ "Roads" :
+			[
+				{
+					"StartID" : 0,
+					"EndID" : 1,
+					"Limit" : 5.0
+				},
+				{
+					"StartID" : 0,
+					"EndID" : 2,
+					"Limit" : 2.5
+				},
+				{
+					"StartID" : 1,
+					"EndID" : 2,
+					"Limit" : 5.0
+				}
+			]
+		}
+	]
+}

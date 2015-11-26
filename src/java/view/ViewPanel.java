@@ -7,13 +7,13 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
-class ViewPanel extends JPanel{
+public class ViewPanel extends JPanel{
 
 	List<RoadView> roadList;
 	List<NodeView> nodeList;
 	List<CarView> carList;
 	
-	ViewPanel() {
+	public ViewPanel() {
 		super();
 		carList = new ArrayList<CarView>();
 		roadList = new ArrayList<RoadView>();
@@ -33,6 +33,18 @@ class ViewPanel extends JPanel{
 			}
 		CarView cv2 = new CarView(nodeList.get(0), nodeList.get(1));
 		carList.add(cv2);
+	}
+	
+	public void add(CarView car){
+		carList.add(car);
+	}
+	
+	public void add(NodeView node){
+		nodeList.add(node);
+	}
+	
+	public void add(RoadView road){
+		roadList.add(road);
 	}
 	
 	@Override

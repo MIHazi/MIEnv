@@ -6,20 +6,27 @@ import java.awt.Graphics2D;
 
 public class RoadView {
 
-	/*private int startPosx, startPosy;
-	private int endPosx, endPosy;*/
-	private NodeView startNode;
-	private NodeView endNode;
+	private int startPosx, startPosy;
+	private int endPosx, endPosy;
 	
 	public RoadView(NodeView sN, NodeView eN)
 	{
-		startNode = sN;
-		endNode = eN;
+		startPosx = sN.getPosX();
+		startPosy = sN.getPosY();
+		endPosx = eN.getPosX();
+		endPosy = eN.getPosY();
+	}
+	
+	public RoadView(int startPosX, int startPosY, int endPosX, int endPosY){
+		this.startPosx = startPosX;
+		this.startPosy = startPosY;
+		this.endPosx = endPosX;
+		this.endPosy = endPosY;
 	}
 	
 	public void draw(Graphics2D g) {
 		g.setColor(new Color(200,200,200));
 		g.setStroke(new BasicStroke(6));
-		g.drawLine(startNode.getPosX(), startNode.getPosY(), endNode.getPosX(), endNode.getPosY());
+		g.drawLine(startPosx, startPosy, endPosx, endPosy);
 	}
 }

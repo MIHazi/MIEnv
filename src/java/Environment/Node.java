@@ -9,15 +9,20 @@ public class Node {
 	ArrayList<Road> roadsFromHere;
 	
 	float posX, posY;
+	int id;
 	
-	public Node(float x, float y){
+	public Node(int id, float x, float y){
+		this.id = id;
 		posX = x;
 		posY = y;
 	}
 	
 	public void addCar(Car car){
-		cars.addFirst(car);		
+		cars.addFirst(car);
+		car.onNode = true;
 	}
 	
-	
+	public Car removeLast(){
+		return cars.removeLast();
+	}
 }
