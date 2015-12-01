@@ -1,8 +1,8 @@
 package Environment;
 
-import java.util.List;
-import java.util.Map;
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import view.*;
 
 public class TopologyModel {
@@ -10,6 +10,7 @@ public class TopologyModel {
 	ArrayList<Node> nodes;
 	//List of connections in the topology
 	ArrayList<Road> roads;
+	HashMap<String, Car> cars = new HashMap<String, Car>();
 	ViewPanel panel;
 	
 	//The current simulation time
@@ -22,27 +23,24 @@ public class TopologyModel {
 		}
 	}
 	
-	public TopologyModel(Map topology){
-		List jsonNodes = (List)(topology.get("Nodes"));
-		List jsonRoads = (List)(topology.get("Roads"));
+	public TopologyModel(ConfigParser config){
 		nodes = new ArrayList<Node>();
 		roads = new ArrayList<Road>();
 		panel = new ViewPanel();
-		//TODO: DEBUG System.out.println("NODES: \n" + jsonNodes.toString());
-		//TODO: DEBUG System.out.println("ROADS: \n" + jsonRoads.toString());
-		for(int i = 0; i < jsonNodes.size(); i++){
-			Map currentNode = (Map)(jsonNodes.get(i));
-			//TODO: DEBUG System.out.println("NODE" + i + ": \n" + currentNode.toString());
-			nodes.add(new Node(i, Integer.parseInt((String)currentNode.get("PosX")), Integer.parseInt((String)currentNode.get("PosY"))));
-			panel.add(new NodeView(Integer.parseInt((String)currentNode.get("PosX")), Integer.parseInt((String)currentNode.get("PosY"))));
+		for(int i = 0; i < config.nNodes(); i++){
+			nodes.add(new Node(i, config.getNodePosX(i), config.getNodePosY(i)));
+			panel.add(new NodeView(config.getNodePosX(i), config.getNodePosY(i)));
 		}
-		for(int i = 0; i < jsonRoads.size(); i++){
-			Map currentRoad = (Map)(jsonRoads.get(i));
-			//TODO: DEBUG System.out.println("NODE" + i + ": \n" + currentRoad.toString());
-			int startID = Integer.parseInt((String)currentRoad.get("StartID"));
-			int endID = Integer.parseInt((String)currentRoad.get("EndID"));
-			roads.add(new Road(nodes.get(startID), nodes.get(endID), Float.parseFloat((String)currentRoad.get("Limit"))));
+		for(int i = 0; i < config.nRoads(); i++){
+			int startID = config.getRoadStartID(i);
+			int endID = config.getRoadEndID(i);
+			roads.add(new Road(nodes.get(startID), nodes.get(endID), config.getRoadLimit(i), i));
 			panel.add(new RoadView((int)nodes.get(startID).posX, (int)nodes.get(startID).posY, (int)nodes.get(endID).posX, (int)nodes.get(endID).posY));
 		}
+	}
+	
+	public boolean carCanTurn(String name, int roadID){
+		Car car = cars.get(name);
+		return (!car.onNode || !nodes.get(car.placeID).hasRoad(roads.get(roadID)));
 	}
 }

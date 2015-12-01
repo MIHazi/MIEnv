@@ -1,8 +1,10 @@
 MAS jason_IDE_test {
 
 	infrastructure: Centralised
-	environment: Environment.TopologyEnvironment("config.json")
+	environment: Environment.TopologyEnvironment("config.json", "100")
 	agents:
+		test_ag1;
+		test_1;
 		agent1 sample_agent;
 
 	aslSourcePath:

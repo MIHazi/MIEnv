@@ -6,5 +6,7 @@ public class Car {
 	public float speed;
 	public float roadPos;
 	public boolean onNode;
+	public boolean started;
+	public int placeID;
 	
 }

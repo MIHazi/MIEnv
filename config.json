@@ -34,5 +34,24 @@
 				"EndID" : 2,
 				"Limit" : 5.0
 			}
+		],
+	"Agents" :
+		[
+			{
+				"Name" : "Test1",
+				"StartNode" : 1,
+				"EndNode" : 2,
+				"Agent" : "test_ag1",
+				"SpawnDelay" : 10,
+				"SpawnCount" : 5
+			},
+			{
+				"Name" : "Test2",
+				"StartNode" : 0,
+				"EndNode" : 2,
+				"Agent" : "test_ag2",
+				"SpawnDelay" : 5,
+				"SpawnCount" : 10
+			}
 		]
 }

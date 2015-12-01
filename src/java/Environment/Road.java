@@ -5,18 +5,21 @@ import java.util.ArrayDeque;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class Road {
+	int id;
 	ArrayDeque<Car> cars;
 	public Node startNode, endNode;
 	float angle;
 	float speedLimit;
 	float length;
 	
-	public Road(Node nStart, Node nEnd, float limit){
+	public Road(Node nStart, Node nEnd, float limit, int id){
 		startNode = nStart;
 		endNode = nEnd;
+		nStart.addRoad(this);
 		speedLimit = limit;
 		length = (float) Math.sqrt((nStart.posX - nEnd.posX)*(nStart.posX - nEnd.posX) + (nStart.posY - nEnd.posY)*(nStart.posY - nEnd.posY));
 		angle = (float) Math.atan2(nStart.posY - nEnd.posY, nStart.posX - nEnd.posX);
+		this.id = id;
 	}
 	
 	public void moveCars(float deltaTime){
@@ -36,6 +39,11 @@ public class Road {
 		for(;nFinished > 0; nFinished--){
 			cars.removeFirst();
 		}
+	}
+	
+	public void addCar(Car car){
+		car.placeID = id;
+		cars.add(car);
 	}
 	
 	public boolean canAcceptCars(){
