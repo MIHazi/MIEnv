@@ -6,7 +6,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class Road {
 	int id;
-	ArrayDeque<Car> cars;
+	public ArrayDeque<Car> cars;
 	public Node startNode, endNode;
 	float angle;
 	float speedLimit;
@@ -48,5 +48,9 @@ public class Road {
 	
 	public boolean canAcceptCars(){
 		throw new NotImplementedException();
+	}
+	
+	public float getLength() {
+		return length;
 	}
 }

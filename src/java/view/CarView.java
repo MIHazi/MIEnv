@@ -3,6 +3,9 @@ package view;
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 
+import Environment.Car;
+import Environment.Road;
+
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -23,14 +26,21 @@ public class CarView {
 		posy = y;
 		this.angle = angle; //comment
 	}
-	
+	/*
 	public CarView(NodeView startNode, NodeView endNode)
 	{
 		posx = (startNode.getPosX()+endNode.getPosX())/2;
 		posy = (startNode.getPosY()+endNode.getPosY())/2;
 		angle = (float)Math.atan(((double)(endNode.getPosX()-startNode.getPosX()))/((double)(startNode.getPosY()-endNode.getPosY())));
 	}
-
+	*/
+	public CarView(Road road, float roadpos) {
+		posx = road.startNode.getPosX()+(road.endNode.getPosX()-road.startNode.getPosX())*(int)roadpos/(int)road.getLength();
+		posy = road.startNode.getPosY()+(road.endNode.getPosY()-road.startNode.getPosY())*(int)roadpos/(int)road.getLength();
+		angle = (float)Math.atan(((double)(road.endNode.getPosX()-road.startNode.getPosX()))/
+				((double)(road.startNode.getPosY()-road.endNode.getPosY())));
+	}
+	/*
 	public void setPosition(int x, int y) {
 		posx = x;
 		posy = y;
@@ -39,6 +49,7 @@ public class CarView {
 	public void setAngle(float angle) {
 		this.angle = angle;
 	}
+	*/
 	
 	public void draw(Graphics2D g) {
 		//super.paint(g);

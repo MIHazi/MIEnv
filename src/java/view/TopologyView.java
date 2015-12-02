@@ -19,6 +19,7 @@ public class TopologyView extends JFrame {
 	
 	private static final int WIDTH = 800;
 	private static final int HEIGHT = 800;
+	private ViewPanel jp;
 	
 	
 	public TopologyView() {
@@ -26,9 +27,13 @@ public class TopologyView extends JFrame {
 		setBounds(10, 10, WIDTH, HEIGHT);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		JPanel jp = new ViewPanel();
+		jp = new ViewPanel();
 		add(jp);
 		setVisible(true);
+	}
+	
+	public void updateAll() {
+		jp.update();
 	}
 	
 }
