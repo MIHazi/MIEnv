@@ -30,7 +30,6 @@ public class TopologyEnvironment extends Environment{
 		view = model.getView();
 		addInitialPercepts();
 		timer = new StepTimer(new UpdateTimer(), Integer.parseInt(args[1]), view);
-		timer.start();
 	}
 	
 	public void addInitialPercepts(){
@@ -66,6 +65,10 @@ public class TopologyEnvironment extends Environment{
 		}
 	}
 	
+	@Override
+	public void stop() {
+		timer.stop();
+	}
 	
 	@Override
 	public boolean executeAction(String agName, Structure act) {
@@ -73,8 +76,13 @@ public class TopologyEnvironment extends Environment{
 		if(act.getFunctor().equals("turn")){
 			String term = act.getTerm(0).toString();
 			int roadID = Integer.parseInt(term);
-			if(model.carCanTurn(agName, roadID))
-				result = true;
+			result = model.moveCarToRoad(agName, roadID);
+		}
+		else if(act.getFunctor().equals("has_route")){
+			model.getCarByName(agName).hasRoute = true;
+			if(model.allCarsHaveRoute())
+				timer.start();
+			result = true;
 		}
 		if(result)
 			updatePercepts();

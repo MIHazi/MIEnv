@@ -3,7 +3,7 @@ MAS jason_IDE_test {
 	infrastructure: Centralised
 	environment: Environment.TopologyEnvironment("config.json", "100")
 	agents:
-		test_ag1_ #10;
+		bfs_agent_ #10;
 
 	aslSourcePath:
 		"src/asl";

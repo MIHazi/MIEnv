@@ -2,6 +2,7 @@ package Environment;
 
 import java.util.ArrayDeque;
 
+import jason.stdlib.min;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class Road {
@@ -25,30 +26,26 @@ public class Road {
 	
 	public void moveCars(float deltaTime){
 		float minSpeed = -1;
-		int nFinished = 0;
 		for(Car car : cars){
 			if(minSpeed < 0)
 				minSpeed = Math.min(speedLimit, car.speed);
 			if(car.speed < minSpeed)
-				minSpeed = car.speed * deltaTime;
-			car.roadPos += minSpeed;
-			if(car.roadPos >= length){
-				endNode.addCar(car);
-				nFinished++;
-			}
+				minSpeed = car.speed;
+			car.roadPos += minSpeed * deltaTime;
 		}
-		for(;nFinished > 0; nFinished--){
-			cars.removeFirst();
+		while(cars.getFirst().roadPos >= length){
+			endNode.addCar(cars.removeFirst());
 		}
 	}
 	
 	public void addCar(Car car){
 		car.placeID = id;
 		cars.add(car);
+		car.roadPos = 0;
 	}
 	
 	public boolean canAcceptCars(){
-		throw new NotImplementedException();
+		return cars.getLast().roadPos > Car.length;
 	}
 	
 	public float getLength() {

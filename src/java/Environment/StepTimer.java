@@ -61,8 +61,6 @@ public class StepTimer {
 		public void keyPressed(KeyEvent arg0) {
 			if(arg0.getKeyCode() == KeyEvent.VK_SPACE && enabled)
 				callback.callback(interval);
-			else
-				System.out.println("What then? " + arg0.getKeyCode());
 		}
 
 		public void keyReleased(KeyEvent arg0) { }

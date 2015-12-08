@@ -38,7 +38,7 @@
 	"Agents" :
 		[
 			{
-				"Name" : "test_ag1_",
+				"Name" : "bfs_agent_",
 				"Speed" : 3,
 				"StartNode" : 1,
 				"EndNode" : 2,
@@ -46,7 +46,7 @@
 				"SpawnCount" : 5
 			},
 			{
-				"Name" : "test_ag1_",
+				"Name" : "bfs_agent_",
 				"Speed" : 6,
 				"StartNode" : 0,
 				"EndNode" : 2,

@@ -3,13 +3,13 @@ package Environment;
 public class Car {
 	
 	public String name;
-	public float speed;
-	public float roadPos;
-	public boolean onNode;
-	public boolean started;
+	public int speed;
+	public int roadPos;
+	public boolean onNode = false;
+	public boolean started = false;
 	public int startNode, endNode;
 	public int placeID;
-	
-	
+	public boolean hasRoute = false;
+	public static int length = 10;
 	
 }

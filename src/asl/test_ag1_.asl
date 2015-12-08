@@ -10,13 +10,15 @@
 
 +!start : true <- .print("hello world.").
 
-+!random_turn(R) : .max(nodes, I) <- 
++!random_turn(R) : nodes(N)  & .max(N, I) <- 
 	turn(math.round(R * I));
-	.print("turn");
-	.print(R).
+	.print("turn").
 
--!random_turn(R) : true <- 
-	.print("turn failed"); 
-	.print(R).
++!random_turn(_) : .random(R) <-
+	turn(math.round(R*2));
+	.print("turn2").
 
-+has_action : .random(R) <- !randomTurn(R).
+-!random_turn(_) : true <- 
+	.print("turn failed").
+
++has_action : .random(R) <- !random_turn(R).

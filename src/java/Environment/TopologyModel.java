@@ -88,13 +88,33 @@ public class TopologyModel {
 		}
 	}
 	
-	public boolean carCanTurn(String name, int roadID){
-		for(ArrayList<Car> carList : cars){
-			for(Car car : carList)
-				if(car.name.equals(name))
-					return (!car.onNode || !nodes.get(car.placeID).hasRoad(roads.get(roadID)));
+	public boolean moveCarToRoad(String name, int roadID){
+		Road toRoad = roads.get(roadID);
+		Car car = getCarByName(name);
+		if(car != null && toRoad != null && toRoad.canAcceptCars() && carCanTurn(car, roadID)){
+			toRoad.addCar(nodes.get(car.placeID).removeLast());
+			return true;
 		}
 		return false;
+	}
+	
+	public boolean carCanTurn(String name, int roadID){
+		Car car = getCarByName(name);
+		if(car == null)
+			return false;
+		return carCanTurn(car, roadID);
+	}
+	
+	public boolean carCanTurn(Car car, int roadID){
+		return (car.onNode && nodes.get(car.placeID).hasRoad(roads.get(roadID)));
+	}
+	
+	public boolean allCarsHaveRoute(){
+		for(ArrayList<Car> carList : cars)
+			for(Car car : carList)
+				if(!car.hasRoute)
+					return false;
+		return true;
 	}
 	
 	public Car getCarByName(String name){
