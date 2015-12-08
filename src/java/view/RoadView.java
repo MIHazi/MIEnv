@@ -26,8 +26,7 @@ public class RoadView {
 	*/
 	public RoadView(Road r)
 	{
-		road.startNode = r.startNode;
-		road.endNode = r.endNode;
+		road = r;
 		startPosx = road.startNode.getPosX();
 		startPosy = road.startNode.getPosY();
 		endPosx = road.endNode.getPosX();

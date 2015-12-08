@@ -1,16 +1,19 @@
 package Environment;
 
+import java.util.ArrayList;
+
 import jason.asSyntax.ASSyntax;
 import jason.asSyntax.ListTerm;
 import jason.asSyntax.Structure;
 import jason.asSyntax.parser.ParseException;
 import jason.environment.Environment;
-import jason.environment.TimeSteppedEnvironment;
+import view.TopologyView;
 
 public class TopologyEnvironment extends Environment{
 	
 	ConfigParser config;
 	TopologyModel model;
+	TopologyView view;
 	StepTimer timer;
 	int step = 0;
 	
@@ -24,8 +27,10 @@ public class TopologyEnvironment extends Environment{
 			throw new IllegalArgumentException("Config file, or timer interval not specified");
 		config = new ConfigParser(args[0]);
 		model = new TopologyModel(config);
+		view = model.getView();
 		addInitialPercepts();
-		timer = new StepTimer(new UpdateTimer(), Integer.parseInt(args[1]));
+		timer = new StepTimer(new UpdateTimer(), Integer.parseInt(args[1]), view);
+		timer.start();
 	}
 	
 	public void addInitialPercepts(){
@@ -41,25 +46,12 @@ public class TopologyEnvironment extends Environment{
 				roadList.add(ASSyntax.parseTerm("[" + i + "," + road.startNode.id + "," + road.endNode.id + "," + road.speedLimit + "," + road.length + "]"));
 			}
 			addPercept(ASSyntax.createLiteral("roads", roadList));
-		}
-		catch(ParseException e){
-			e.printStackTrace();
-		}
-	}
-	
-	public void addInitialPercepts(String agName){
-		try{
-			ListTerm nodeList = ASSyntax.createList();
-			for(Integer i = 0; i < model.nodes.size(); i++){
-					nodeList.add(ASSyntax.createNumber(i));
+			for(ArrayList<Car> carList : model.cars){
+				for(Car car : carList){
+					addPercept(car.name, ASSyntax.createLiteral("start_pos", ASSyntax.createNumber(car.startNode)));
+					addPercept(car.name, ASSyntax.createLiteral("end_pos", ASSyntax.createNumber(car.endNode)));
+				}
 			}
-			addPercept(agName, ASSyntax.createLiteral("nodes", nodeList));
-			ListTerm roadList = ASSyntax.createList();
-			for(Integer i = 0; i < model.roads.size(); i++){
-				Road road = model.roads.get(i);
-				roadList.add(ASSyntax.parseTerm("[" + i + "," + road.startNode.id + "," + road.endNode.id + "," + road.speedLimit + "," + road.length + "]"));
-			}
-			addPercept(agName, ASSyntax.createLiteral("roads", roadList));
 		}
 		catch(ParseException e){
 			e.printStackTrace();
@@ -69,7 +61,8 @@ public class TopologyEnvironment extends Environment{
 	public void updatePercepts(){
 		clearPercepts();
 		for(Node node : model.nodes){
-			addPercept(node.removeLast().name, ASSyntax.createLiteral("has_action"));
+			if(node.hasCar())
+				addPercept(node.peekLast().name, ASSyntax.createLiteral("has_action"));
 		}
 	}
 	
@@ -91,10 +84,12 @@ public class TopologyEnvironment extends Environment{
 	class UpdateTimer implements TimerCallback{
 
 		public void callback(int deltaTime) {
-			model.moveCars(deltaTime);
-			//Update graphics
+			System.out.println("[ENV] : Updating model");
+			model.update(deltaTime, step);
+			System.out.println("[ENV] : Updating percepts");
 			updatePercepts();
-			
+			System.out.println("[ENV] : Step " + step + " started");
+			step++;
 		}
 		
 	}

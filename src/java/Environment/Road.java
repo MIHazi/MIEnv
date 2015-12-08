@@ -20,6 +20,7 @@ public class Road {
 		length = (float) Math.sqrt((nStart.posX - nEnd.posX)*(nStart.posX - nEnd.posX) + (nStart.posY - nEnd.posY)*(nStart.posY - nEnd.posY));
 		angle = (float) Math.atan2(nStart.posY - nEnd.posY, nStart.posX - nEnd.posX);
 		this.id = id;
+		cars = new ArrayDeque<Car>();
 	}
 	
 	public void moveCars(float deltaTime){

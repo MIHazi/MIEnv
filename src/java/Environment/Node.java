@@ -37,6 +37,10 @@ public class Node {
 		return ret;
 	}
 	
+	public Car peekLast(){
+		return cars.getLast();
+	}
+	
 	public void addRoad(Road road){
 		roadsFromHere.add(road);
 	}

@@ -44,16 +44,16 @@ public class ConfigParser {
 		return (String)((Map)((List)config.get("Agents")).get(idx)).get("Name");
 	}
 	
+	public int getAgSpeed(int idx){
+		return Integer.parseInt((String)((Map)((List)config.get("Agents")).get(idx)).get("Speed"));
+	}
+	
 	public int getAgStartNode(int idx){
 		return Integer.parseInt((String)((Map)((List)config.get("Agents")).get(idx)).get("StartNode"));
 	}
 	
 	public int getAgEndNode(int idx){
 		return Integer.parseInt((String)((Map)((List)config.get("Agents")).get(idx)).get("EndNode"));
-	}
-	
-	public String getAgCode(int idx){
-		return (String)((Map)((List)config.get("Agents")).get(idx)).get("Agent");
 	}
 	
 	public int getAgSpawnDelay(int idx){

@@ -36,4 +36,8 @@ public class TopologyView extends JFrame {
 		jp.update();
 	}
 	
+	public ViewPanel getPanel(){
+		return jp;
+	}
+	
 }
