@@ -69,6 +69,7 @@ public class TopologyModel {
 		for(Road road : roads){
 			road.moveCars(deltaTime);
 		}
+		printCars();	//TODO: JUST FOR DEBUG
 		view.updateAll();
 	}
 	
@@ -84,6 +85,16 @@ public class TopologyModel {
 						break;
 					}
 				}
+			}
+		}
+	}
+	
+	//TODO: JUST FOR DEBUG
+	void printCars(){
+		for(ArrayList<Car> carList : cars){
+			for(Car car : carList){
+				if(car.started)
+					System.out.println(car.toString() + "\n");
 			}
 		}
 	}

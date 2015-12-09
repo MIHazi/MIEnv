@@ -12,4 +12,8 @@ public class Car {
 	public boolean hasRoute = false;
 	public static int length = 10;
 	
+	public String toString(){
+		return "[" + name + "]" + "\n\tspeed: " + speed + "\n\troadPos: " + roadPos + "\n\tplaceID: " + placeID; 
+	}
+	
 }

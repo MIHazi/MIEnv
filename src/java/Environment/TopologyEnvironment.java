@@ -29,23 +29,31 @@ public class TopologyEnvironment extends Environment{
 		model = new TopologyModel(config);
 		view = model.getView();
 		addInitialPercepts();
-		timer = new StepTimer(new UpdateTimer(), Integer.parseInt(args[1]), view);
+		timer = new StepTimer(new UpdateTimer(), Integer.parseInt(args[1]));
 	}
 	
 	public void addInitialPercepts(){
 		try{
-			ListTerm nodeList = ASSyntax.createList();
+			for(int i = 0; i < model.nodes.size(); i++){
+				Node node = model.nodes.get(i);
+				addPercept(ASSyntax.createLiteral("node", ASSyntax.parseList("[" + i + "," + node.posX + "," + node.posY + "]")));
+			}
+			for(int i = 0; i < model.roads.size(); i++){
+				Road road = model.roads.get(i);
+				addPercept(ASSyntax.createLiteral("road", ASSyntax.parseList("[" + i + "," + road.startNode.id + "," + road.endNode.id + "," + road.speedLimit + "," + road.length + "]")));
+			}
+			/*ListTerm nodeList = ASSyntax.createList();
 			for(Integer i = 0; i < model.nodes.size(); i++){
 					Node node = model.nodes.get(i);
-					nodeList.add(ASSyntax.parseTerm("[" + i + "," + node.posX + "," + node.posY + "]"));
+					nodeList.add(ASSyntax.parseList("[" + i + "," + node.posX + "," + node.posY + "]"));
 			}
 			addPercept(ASSyntax.createLiteral("nodes", nodeList));
 			ListTerm roadList = ASSyntax.createList();
 			for(Integer i = 0; i < model.roads.size(); i++){
 				Road road = model.roads.get(i);
-				roadList.add(ASSyntax.parseTerm("[" + i + "," + road.startNode.id + "," + road.endNode.id + "," + road.speedLimit + "," + road.length + "]"));
+				roadList.add(ASSyntax.parseList("[" + i + "," + road.startNode.id + "," + road.endNode.id + "," + road.speedLimit + "," + road.length + "]"));
 			}
-			addPercept(ASSyntax.createLiteral("roads", roadList));
+			addPercept(ASSyntax.createLiteral("roads", roadList));*/
 			addIndividualPercepts();
 		}
 		catch(ParseException e){
@@ -92,6 +100,7 @@ public class TopologyEnvironment extends Environment{
 		}
 		else if(act.getFunctor().equals("exit_sim")){
 			//TODO: Találjunk ki ide valamit?
+			result = true;
 		}
 		if(result)
 			updatePercepts();
@@ -102,7 +111,7 @@ public class TopologyEnvironment extends Environment{
 
 		public void callback(int deltaTime) {
 			System.out.println("[ENV] : Updating model");
-			model.update(deltaTime, step);
+			model.update(deltaTime/25f, step);
 			System.out.println("[ENV] : Updating percepts");
 			updatePercepts();
 			System.out.println("[ENV] : Step " + step + " started");

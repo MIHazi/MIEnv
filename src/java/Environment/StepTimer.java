@@ -18,7 +18,7 @@ public class StepTimer {
 		callback = cb;
 		interval = interval_ms;
 		startWithCallback = initialCallback;
-		timed = false;
+		timed = true;
 		thread = new TimerThread();
 	}
 	
@@ -26,7 +26,7 @@ public class StepTimer {
 		callback = cb;
 		interval = interval_ms;
 		startWithCallback = false;
-		timed = false;
+		timed = true;
 		thread = new TimerThread();
 	}
 	

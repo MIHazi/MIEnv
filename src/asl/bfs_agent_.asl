@@ -17,7 +17,7 @@
 	has_route.
 
 //If we have roads from our current position, which we didn't already check
-+!get_route_from(Idx,S) : .member(M, roads) & M == [I,S,E,_,_] & not has_passed(E) <-
++!get_route_from(Idx,S) : road([I,S,E,_,_]) & not has_passed(E) <-
 	.print("route from ",S);
 	+route(Idx,I);				//We add the road leading to it to our route
 	+has_passed(E);				//Indicate that we passed the node it's leading to

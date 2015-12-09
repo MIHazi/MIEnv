@@ -38,7 +38,7 @@ public class Road {
 				minSpeed = car.speed;
 			car.roadPos += minSpeed * deltaTime;
 		}
-		while(cars.getFirst().roadPos >= length){
+		while(!cars.isEmpty() && cars.getFirst().roadPos >= length){
 			endNode.addCar(cars.removeFirst());
 		}
 	}
@@ -50,6 +50,8 @@ public class Road {
 	}
 	
 	public boolean canAcceptCars(){
+		if(cars.isEmpty())
+			return true;
 		return cars.getLast().roadPos > Car.length;
 	}
 	
