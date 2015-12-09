@@ -45,12 +45,7 @@ public class TopologyEnvironment extends Environment{
 				roadList.add(ASSyntax.parseTerm("[" + i + "," + road.startNode.id + "," + road.endNode.id + "," + road.speedLimit + "," + road.length + "]"));
 			}
 			addPercept(ASSyntax.createLiteral("roads", roadList));
-			for(ArrayList<Car> carList : model.cars){
-				for(Car car : carList){
-					addPercept(car.name, ASSyntax.createLiteral("start_pos", ASSyntax.createNumber(car.startNode)));
-					addPercept(car.name, ASSyntax.createLiteral("end_pos", ASSyntax.createNumber(car.endNode)));
-				}
-			}
+			addIndividualPercepts();
 		}
 		catch(ParseException e){
 			e.printStackTrace();
@@ -58,10 +53,20 @@ public class TopologyEnvironment extends Environment{
 	}
 	
 	public void updatePercepts(){
-		clearPercepts();
+		clearAllPercepts();
+		addIndividualPercepts();
 		for(Node node : model.nodes){
 			if(node.hasCar())
 				addPercept(node.peekLast().name, ASSyntax.createLiteral("has_action"));
+		}
+	}
+	
+	void addIndividualPercepts(){
+		for(ArrayList<Car> carList : model.cars){
+			for(Car car : carList){
+				addPercept(car.name, ASSyntax.createLiteral("start_pos", ASSyntax.createNumber(car.startNode)));
+				addPercept(car.name, ASSyntax.createLiteral("end_pos", ASSyntax.createNumber(car.endNode)));
+			}
 		}
 	}
 	
@@ -83,6 +88,9 @@ public class TopologyEnvironment extends Environment{
 			if(model.allCarsHaveRoute())
 				timer.start();
 			result = true;
+		}
+		else if(act.getFunctor().equals("exit_sim")){
+			//TODO: Találjunk ki ide valamit?
 		}
 		if(result)
 			updatePercepts();
