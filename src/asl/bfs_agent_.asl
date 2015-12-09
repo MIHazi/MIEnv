@@ -55,5 +55,5 @@
 
 //If we don't have an index, we create one with 0
 +has_action : route(0,R) <-
-	+route_idx(0,R);
+	+route_idx(0);
 	!turn_to(0,R).

@@ -36,7 +36,8 @@ public class TopologyEnvironment extends Environment{
 		try{
 			ListTerm nodeList = ASSyntax.createList();
 			for(Integer i = 0; i < model.nodes.size(); i++){
-					nodeList.add(ASSyntax.createNumber(i));
+					Node node = model.nodes.get(i);
+					nodeList.add(ASSyntax.parseTerm("[" + i + "," + node.posX + "," + node.posY + "]"));
 			}
 			addPercept(ASSyntax.createLiteral("nodes", nodeList));
 			ListTerm roadList = ASSyntax.createList();
