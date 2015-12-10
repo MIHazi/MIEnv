@@ -69,7 +69,7 @@ public class TopologyModel {
 		for(Road road : roads){
 			road.moveCars(deltaTime);
 		}
-		printCars();	//TODO: JUST FOR DEBUG
+		//printCars();	//TODO: JUST FOR DEBUG
 		view.updateAll();
 	}
 	
@@ -80,8 +80,10 @@ public class TopologyModel {
 				for(int j = 0; j < carList.size(); j++){
 					Car car = carList.get(j);
 					if(!car.started){
-						car.started = true;
-						nodes.get(car.startNode).addCar(car);
+						if(!nodes.get(car.startNode).hasCar()){ //TODO: uncomment if node can only hold one car
+							car.started = true;
+							nodes.get(car.startNode).addCar(car);
+						}
 						break;
 					}
 				}
@@ -125,6 +127,25 @@ public class TopologyModel {
 			for(Car car : carList)
 				if(!car.hasRoute)
 					return false;
+		return true;
+	}
+	
+	public boolean exitCar(String name){
+		Car car = getCarByName(name);
+		if(car.onNode && car.placeID == car.endNode){
+			car.finished = true;
+			nodes.get(car.endNode).removeLast();
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean allCarsFinished(){
+		for(ArrayList<Car> carList : cars){
+			for(Car car : carList)
+				if(!car.finished)
+					return false;
+		}
 		return true;
 	}
 	

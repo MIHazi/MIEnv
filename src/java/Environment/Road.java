@@ -31,8 +31,8 @@ public class Road {
 			if(minSpeed < 0){
 				minSpeed = Math.min(speedLimit, car.speed);
 				//TODO: uncomment if node can only hold one car
-				//if(endNode.hasCar() && (car.roadPos + minSpeed * deltaTime) >= length)
-				//	minSpeed = (length - car.roadPos)/(float)deltaTime;
+				if(endNode.hasCar() && (car.roadPos + minSpeed * deltaTime) >= length)
+					minSpeed = (length - Car.length - car.roadPos)/(float)deltaTime;
 			}
 			if(car.speed < minSpeed)
 				minSpeed = car.speed;

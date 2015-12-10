@@ -94,16 +94,18 @@ public class TopologyEnvironment extends Environment{
 		}
 		else if(act.getFunctor().equals("has_route")){
 			model.getCarByName(agName).hasRoute = true;
-			if(model.allCarsHaveRoute())
+			if(model.allCarsHaveRoute()){
+				System.out.println("All finished");
 				timer.start();
+			}
 			result = true;
 		}
 		else if(act.getFunctor().equals("exit_sim")){
-			//TODO: Találjunk ki ide valamit?
-			result = true;
+			result = model.exitCar(agName);
+			if(model.allCarsFinished()){
+				stop();
+			}
 		}
-		if(result)
-			updatePercepts();
 		return result;
 	}
 	

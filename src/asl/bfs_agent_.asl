@@ -24,7 +24,7 @@
 	!get_route_from(Idx+1,E).	//And try to find a route from that node
 	
 //If we have no more unchecked child-nodes
-+!get_route_from(Idx,S) : route(Idx-1,P) <-
++!get_route_from(Idx,_) : route(Idx-1,P) <-
 	if(Idx == 0){
 		.print("search failed")
 	}
@@ -39,9 +39,9 @@
 	turn(R).			//And execute the turn
 
 //If we failed to turn
--!turn_to(I,R) : true <-
+-!turn_to(I,R) : true  <-
 	-route_idx(I);		//We decrement our idx
-	+route_idx(I-1).
+	+route_idx(I-1);
 	+route(I,R).		//And add the last step of the route to the BB
 
 //If we are on a node, and we have no further route, we are at our goal, and exit
