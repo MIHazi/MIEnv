@@ -7,6 +7,7 @@ import jason.asSyntax.ListTerm;
 import jason.asSyntax.Structure;
 import jason.asSyntax.parser.ParseException;
 import jason.environment.Environment;
+import jason.functions.Sqrt;
 import view.TopologyView;
 
 public class TopologyEnvironment extends Environment{
@@ -41,6 +42,14 @@ public class TopologyEnvironment extends Environment{
 			for(int i = 0; i < model.roads.size(); i++){
 				Road road = model.roads.get(i);
 				addPercept(ASSyntax.createLiteral("road", ASSyntax.parseList("[" + i + "," + road.startNode.id + "," + road.endNode.id + "," + road.speedLimit + "," + road.length + "]")));
+			}
+			for(int i = 0; i<model.roads.size(); i++){
+				Node node1 = model.nodes.get(i);
+				for(int j = 0; j<model.nodes.size();j++){
+					Node node2 = model.nodes.get(j);
+					int distance = (int)Math.sqrt((double)(node2.posX-node1.posX)*(node2.posX-node1.posX)+(node2.posY-node1.posY)*(node2.posY-node1.posY));
+					addPercept(ASSyntax.createLiteral("heuristic", ASSyntax.parseList("[" + i + "," + j + "," + distance + "]")));
+				}
 			}
 			/*ListTerm nodeList = ASSyntax.createList();
 			for(Integer i = 0; i < model.nodes.size(); i++){
