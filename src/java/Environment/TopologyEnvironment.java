@@ -7,7 +7,6 @@ import jason.asSyntax.ListTerm;
 import jason.asSyntax.Structure;
 import jason.asSyntax.parser.ParseException;
 import jason.environment.Environment;
-import jason.functions.Sqrt;
 import view.TopologyView;
 
 public class TopologyEnvironment extends Environment{
