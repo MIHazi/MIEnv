@@ -49,8 +49,8 @@ public class CarView {
 		posy = road.startNode.getPosY()
 				+ (road.endNode.getPosY() - road.startNode.getPosY())
 				* (int) roadpos / (int) road.getLength();
-		angle = (float) Math.atan(((double) (road.endNode.getPosX() - road.startNode.getPosX()))
-						/ ((double) (road.startNode.getPosY() - road.endNode.getPosY())));
+		angle = (float) Math.atan2(road.endNode.getPosX()- road.startNode.getPosX(),
+				road.startNode.getPosY() - road.endNode.getPosY());
 		if (img == null)
 			try {
 				img = ImageIO.read(new File("pictures\\car01.png"));
@@ -72,7 +72,6 @@ public class CarView {
 		// Graphics2D g = buffImg.createGraphics();
 		AffineTransform at = new AffineTransform();
 		at.translate(posx, posy);
-
 		at.rotate(angle);
 		at.translate(-4, -6);
 		g.setTransform(at);

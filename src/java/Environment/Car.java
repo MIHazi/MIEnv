@@ -10,7 +10,7 @@ public class Car {
 	public int startNode, endNode;
 	public int placeID;
 	public boolean hasRoute = false;
-	public static int length = 4;
+	public static int length = 20;
 	
 	public String toString(){
 		return "[" + name + "]" + "\n\tspeed: " + speed + "\n\troadPos: " + roadPos + "\n\tplaceID: " + placeID; 

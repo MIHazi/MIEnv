@@ -26,17 +26,18 @@ public class Road {
 	}
 	
 	public void moveCars(float deltaTime){
-		float minSpeed = -1;
+		int lastPos = length + 2*Car.length;
+		float minSpeed;
 		for(Car car : cars){
-			if(minSpeed < 0){
-				minSpeed = Math.min(speedLimit, car.speed);
-				//TODO: uncomment if node can only hold one car
-				if(endNode.hasCar() && (car.roadPos + minSpeed * deltaTime) >= length)
-					minSpeed = (length - Car.length - car.roadPos)/(float)deltaTime;
+			minSpeed = Math.min(car.speed, speedLimit);
+			if(car.equals(cars.getFirst()) && endNode.hasCar() && (car.roadPos + minSpeed * deltaTime) >= length){
+				car.roadPos = (length - Car.length);
+			}else if(car.roadPos + minSpeed * deltaTime >= (lastPos - Car.length)){
+				car.roadPos = (lastPos - Car.length);
+			}else{
+				car.roadPos += minSpeed * deltaTime;
 			}
-			if(car.speed < minSpeed)
-				minSpeed = car.speed;
-			car.roadPos += minSpeed * deltaTime;
+			lastPos = car.roadPos;
 		}
 		while(!cars.isEmpty() && cars.getFirst().roadPos >= length){
 			endNode.addCar(cars.removeFirst());

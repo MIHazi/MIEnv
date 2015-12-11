@@ -42,14 +42,14 @@ public class TopologyEnvironment extends Environment{
 				Road road = model.roads.get(i);
 				addPercept(ASSyntax.createLiteral("road", ASSyntax.parseList("[" + i + "," + road.startNode.id + "," + road.endNode.id + "," + road.speedLimit + "," + road.length + "]")));
 			}
-			for(int i = 0; i<model.roads.size(); i++){
+			/*for(int i = 0; i<model.roads.size(); i++){
 				Node node1 = model.nodes.get(i);
 				for(int j = 0; j<model.nodes.size();j++){
 					Node node2 = model.nodes.get(j);
 					int distance = (int)Math.sqrt((double)(node2.posX-node1.posX)*(node2.posX-node1.posX)+(node2.posY-node1.posY)*(node2.posY-node1.posY));
 					addPercept(ASSyntax.createLiteral("heuristic", ASSyntax.parseList("[" + i + "," + j + "," + distance + "]")));
 				}
-			}
+			}*/
 			/*ListTerm nodeList = ASSyntax.createList();
 			for(Integer i = 0; i < model.nodes.size(); i++){
 					Node node = model.nodes.get(i);
@@ -73,8 +73,10 @@ public class TopologyEnvironment extends Environment{
 		clearAllPercepts();
 		addIndividualPercepts();
 		for(Node node : model.nodes){
-			if(node.hasCar())
+			if(node.hasCar()){
+				addPercept(node.peekLast().name, ASSyntax.createLiteral("current_pos", ASSyntax.createNumber(node.id)));
 				addPercept(node.peekLast().name, ASSyntax.createLiteral("has_action"));
+			}
 		}
 	}
 	
@@ -113,6 +115,7 @@ public class TopologyEnvironment extends Environment{
 			if(model.allCarsFinished()){
 				stop();
 			}
+			//result = true;
 		}
 		return result;
 	}
