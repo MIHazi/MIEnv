@@ -11,29 +11,35 @@
 //At start we try to find a route from start pos.
 +!start : start_pos(N) <-
 	.print("start");
-	+node_with_routes(N,R);
+	+node_with_routes(N,0,-1);
 	+node_weights(N,0);
-	!get_route(N).
+	!before.
 
-//When the node we are on (while searching) is our goal, we found our route (in the route belief)
-/*+!get_route_from(_,S) : end_pos(S) <-
-	.print("End found : ", S);
-	has_route.
-	*/
++!before :road([I,S,E,_,L]) & node_with_routes(S,_,_) & not node_with_routes(E,_,_) & end_pos(Endpos) & heuristic(E,EndPos,LH) &node_weights(S,Weight) <-
+	+heur(H);
+	.concat(H, L+LH+Weight, H);
+	-+heur(H).
 	
-+!get_route :road([I,S,E,_,L]) & node_with_routes(S,_) & not node_with_routes(E,R) & end_pos(Endpos) & heuristic(E,EndPos,LH) & heuristic(_,_,LH1) &LH<LH1 & node_weights(S,W)<-
++!get_route :road([Roadindex,S,E,Speed,L]) & node_with_routes(S,Index,R) & not node_with_routes(E,_,_) & end_pos(Endpos) & heuristic(E,EndPos,LH)& heur(Heur)&node_weights(S,W) & .min(Heur, Min) & LH+L+W == Min <-
 	+node_weights(E,W+L);
-	+node_with_routes(E,R+road([I,S,E,_,L]));
+	for(.range(I,1,Index)) {
+		+node_with_routes(E,I,Roadindex)
+	}
+	+node_with_routes(E,Index+1,Roadindex);
 	if(E==Endpos) {
 		!route_found;
 	} else
 	{
-		!get_route;
+		!before;
 	}.
-	
-+!route_found :node_with_routes(E,R) <-
-	+route(R);
+
++!route_found :node_with_routes(E, Index, Roadindex) <-
+	+route_idx(1);
+	for(.range(I,1,Index)) {
+		+route(I,R)
+	}
 	has_route.
+	
 	
 //If we are turning
 +!turn_to(I,R) : true <-
