@@ -3,75 +3,405 @@
 		[
 			{ 
 				"ID" : 0,
-				"PosX" : 120,
+				"PosX" : 60,
 				"PosY" : 60				  
 			},
 			{ 
 				"ID" : 1,
-				"PosX" : 220,
-				"PosY" : 130				  
+				"PosX" : 60,
+				"PosY" : 120				  
 			},
 			{ 
 				"ID" : 2,
-				"PosX" : 150,
-				"PosY" : 200				  
+				"PosX" : 390,
+				"PosY" : 120				  
 			},
 			{ 
 				"ID" : 3,
-				"PosX" : 70,
-				"PosY" : 240				  
+				"PosX" : 260,
+				"PosY" : 210				  
 			},
 			{ 
 				"ID" : 4,
-				"PosX" : 360,
-				"PosY" : 240				  
+				"PosX" : 60,
+				"PosY" : 270				  
 			},
 			{ 
 				"ID" : 5,
-				"PosX" : 250,
-				"PosY" : 320				  
+				"PosX" : 260,
+				"PosY" : 270				  
 			},
 			{ 
 				"ID" : 6,
-				"PosX" : 250,
-				"PosY" : 400				  
+				"PosX" : 390,
+				"PosY" : 210				  
+			},
+			{ 
+				"ID" : 7,
+				"PosX" : 390,
+				"PosY" : 270				  
+			},
+			{ 
+				"ID" : 8,
+				"PosX" : 540,
+				"PosY" : 120				  
+			},
+			{ 
+				"ID" : 9,
+				"PosX" : 540,
+				"PosY" : 210				  
+			},
+			{ 
+				"ID" : 10,
+				"PosX" : 540,
+				"PosY" : 270				  
+			},
+			{ 
+				"ID" : 11,
+				"PosX" : 60,
+				"PosY" : 360				  
+			},
+			{ 
+				"ID" : 12,
+				"PosX" : 390,
+				"PosY" : 360				  
+			},
+			{ 
+				"ID" : 13,
+				"PosX" : 290,
+				"PosY" : 420				  
+			},
+			{ 
+				"ID" : 14,
+				"PosX" : 490,
+				"PosY" : 420				  
+			},
+			{ 
+				"ID" : 15,
+				"PosX" : 390,
+				"PosY" : 480				  
+			},
+			{ 
+				"ID" : 16,
+				"PosX" : 590,
+				"PosY" : 420				  
+			},
+			{ 
+				"ID" : 17,
+				"PosX" : 160,
+				"PosY" : 420				  
+			},
+			{ 
+				"ID" : 18,
+				"PosX" : 750,
+				"PosY" : 360				  
+			},
+			{ 
+				"ID" : 19,
+				"PosX" : 260,
+				"PosY" : 570				  
+			},
+			{ 
+				"ID" : 20,
+				"PosX" : 60,
+				"PosY" : 570				  
+			},
+			{ 
+				"ID" : 21,
+				"PosX" : 60,
+				"PosY" : 660				  
+			},
+			{ 
+				"ID" : 22,
+				"PosX" : 260,
+				"PosY" : 660				  
+			},
+			{ 
+				"ID" : 23,
+				"PosX" : 390,
+				"PosY" : 660				  
+			},
+			{ 
+				"ID" : 24,
+				"PosX" : 750,
+				"PosY" : 480				  
 			}
 		],
 	"Roads" :
 		[
 			{
 				"StartID" : 1,
-				"EndID" : 0,
-				"Limit" : 5
-			},
-			{
-				"StartID" : 4,
-				"EndID" : 1,
-				"Limit" : 2
-			},
-			{
-				"StartID" : 3,
-				"EndID" : 1,
-				"Limit" : 5
-			},
-			{
-				"StartID" : 4,
-				"EndID" : 6,
-				"Limit" : 5
-			},
-			{
-				"StartID" : 6,
-				"EndID" : 5,
-				"Limit" : 5
-			},
-			{
-				"StartID" : 5,
 				"EndID" : 2,
 				"Limit" : 5
 			},
 			{
 				"StartID" : 2,
+				"EndID" : 1,
+				"Limit" : 5
+			},
+			{
+				"StartID" : 1,
+				"EndID" : 3,
+				"Limit" : 4
+			},
+			{
+				"StartID" : 4,
+				"EndID" : 1,
+				"Limit" : 7
+			},
+			{
+				"StartID" : 2,
+				"EndID" : 3,
+				"Limit" : 4
+			},
+			{
+				"StartID" : 8,
+				"EndID" : 2,
+				"Limit" : 6
+			},
+			{
+				"StartID" : 2,
+				"EndID" : 8,
+				"Limit" : 6
+			},
+			{
+				"StartID" : 6,
+				"EndID" : 2,
+				"Limit" : 3
+			},
+			{
+				"StartID" : 2,
+				"EndID" : 6,
+				"Limit" : 3
+			},
+			{
+				"StartID" : 9,
+				"EndID" : 8,
+				"Limit" : 6
+			},
+			{
+				"StartID" : 8,
+				"EndID" : 9,
+				"Limit" : 6
+			},
+			{
+				"StartID" : 9,
+				"EndID" : 6,
+				"Limit" : 4
+			},
+			{
+				"StartID" : 6,
+				"EndID" : 9,
+				"Limit" : 4
+			},
+			{
+				"StartID" : 3,
+				"EndID" : 6,
+				"Limit" : 4
+			},
+			{
+				"StartID" : 4,
+				"EndID" : 3,
+				"Limit" : 5
+			},
+			{
+				"StartID" : 3,
+				"EndID" : 4,
+				"Limit" : 5
+			},
+			{
+				"StartID" : 3,
 				"EndID" : 5,
+				"Limit" : 4
+			},
+			{
+				"StartID" : 5,
+				"EndID" : 3,
+				"Limit" : 4
+			},
+			{
+				"StartID" : 6,
+				"EndID" : 7,
+				"Limit" : 3
+			},
+			{
+				"StartID" : 7,
+				"EndID" : 6,
+				"Limit" : 5
+			},
+			{
+				"StartID" : 10,
+				"EndID" : 9,
+				"Limit" : 5
+			},
+			{
+				"StartID" : 9,
+				"EndID" : 10,
+				"Limit" : 5
+			},
+			{
+				"StartID" : 4,
+				"EndID" : 5,
+				"Limit" : 2
+			},
+			{
+				"StartID" : 5,
+				"EndID" : 4,
+				"Limit" : 3
+			},
+			{
+				"StartID" : 7,
+				"EndID" : 5,
+				"Limit" : 3
+			},
+			{
+				"StartID" : 5,
+				"EndID" : 7,
+				"Limit" : 2
+			},
+			{
+				"StartID" : 7,
+				"EndID" : 10,
+				"Limit" : 5
+			},
+			{
+				"StartID" : 10,
+				"EndID" : 7,
+				"Limit" : 5
+			},
+			{
+				"StartID" : 4,
+				"EndID" : 11,
+				"Limit" : 8
+			},
+			{
+				"StartID" : 11,
+				"EndID" : 4,
+				"Limit" : 8
+			},
+			{
+				"StartID" : 7,
+				"EndID" : 12,
+				"Limit" : 3
+			},
+			{
+				"StartID" : 12,
+				"EndID" : 7,
+				"Limit" : 3
+			},
+			{
+				"StartID" : 11,
+				"EndID" : 17,
+				"Limit" : 5
+			},
+			{
+				"StartID" : 17,
+				"EndID" : 11,
+				"Limit" : 5
+			},
+			{
+				"StartID" : 13,
+				"EndID" : 17,
+				"Limit" : 5
+			},
+			{
+				"StartID" : 17,
+				"EndID" : 13,
+				"Limit" : 5
+			},
+			{
+				"StartID" : 12,
+				"EndID" : 13,
+				"Limit" : 3
+			},
+			{
+				"StartID" : 14,
+				"EndID" : 12,
+				"Limit" : 3
+			},
+			{
+				"StartID" : 16,
+				"EndID" : 14,
+				"Limit" : 5
+			},
+			{
+				"StartID" : 14,
+				"EndID" : 16,
+				"Limit" : 5
+			},
+			{
+				"StartID" : 13,
+				"EndID" : 15,
+				"Limit" : 3
+			},
+			{
+				"StartID" : 15,
+				"EndID" : 14,
+				"Limit" : 3
+			},
+			{
+				"StartID" : 16,
+				"EndID" : 18,
+				"Limit" : 5
+			},
+			{
+				"StartID" : 18,
+				"EndID" : 16,
+				"Limit" : 5
+			},
+			{
+				"StartID" : 24,
+				"EndID" : 18,
+				"Limit" : 5
+			},
+			{
+				"StartID" : 24,
+				"EndID" : 16,
+				"Limit" : 5
+			},
+			{
+				"StartID" : 23,
+				"EndID" : 24,
+				"Limit" : 20
+			},
+			{
+				"StartID" : 15,
+				"EndID" : 19,
+				"Limit" : 7
+			},
+			{
+				"StartID" : 15,
+				"EndID" : 23,
+				"Limit" : 20
+			},
+			{
+				"StartID" : 19,
+				"EndID" : 20,
+				"Limit" : 5
+			},
+			{
+				"StartID" : 20,
+				"EndID" : 21,
+				"Limit" : 5
+			},
+			{
+				"StartID" : 21,
+				"EndID" : 22,
+				"Limit" : 5
+			},
+			{
+				"StartID" : 22,
+				"EndID" : 23,
+				"Limit" : 5
+			},
+			{
+				"StartID" : 0,
+				"EndID" : 1,
+				"Limit" : 5
+			},
+			{
+				"StartID" : 1,
+				"EndID" : 0,
 				"Limit" : 5
 			}
 		],
@@ -96,8 +426,8 @@
 			{
 				"Name" : "astar2_agent_",
 				"Speed" : 6,
-				"StartNode" : 1,
-				"EndNode" : 0,
+				"StartNode" : 0,
+				"EndNode" : 8,
 				"SpawnDelay" : 5,
 				"SpawnCount" : 10
 			}

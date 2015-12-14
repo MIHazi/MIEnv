@@ -82,6 +82,8 @@ public class ViewPanel extends JPanel{
 		Graphics2D g2d = (Graphics2D) g;
 		for (int i = 0; i<roadViewList.size(); i++)
 			roadViewList.get(i).draw(g2d);
+		for (int i = 0; i<roadViewList.size(); i++)
+			roadViewList.get(i).drawCars(g2d);
 		for (int i = 0; i<nodeViewList.size(); i++)
 			nodeViewList.get(i).draw(g2d);
 	}

@@ -52,6 +52,10 @@ public class RoadView {
 		g.setColor(new Color(200,200,200));
 		g.setStroke(new BasicStroke(6));
 		g.drawLine(startPosx, startPosy, endPosx, endPosy);
+		
+	}
+	
+	public void drawCars(Graphics2D g) {
 		for (int i = 0; i<carViewList.size(); i++)
 			carViewList.get(i).draw(g);
 	}
